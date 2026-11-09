@@ -8,15 +8,26 @@ import {
 } from './app/actions.js';
 import { type BaseId } from './app/constants.js';
 import { createInitialModel } from './app/model.js';
+import { applyTheme, getPreferredTheme, toggleTheme, type Theme } from './app/theme.js';
 import { el, mount } from './ui/dom.js';
 import { renderGameView } from './ui/gameView.js';
+import { createMoonIcon, createSunIcon } from './ui/icons.js';
 import { renderScoresView } from './ui/scoresView.js';
 import { renderSettingsView } from './ui/settingsView.js';
 
 let model = createInitialModel();
+let theme: Theme = getPreferredTheme();
+
+applyTheme(theme);
 
 const update = (nextModel: typeof model): void => {
   model = nextModel;
+  render();
+};
+
+const switchTheme = (): void => {
+  theme = toggleTheme(theme);
+  applyTheme(theme);
   render();
 };
 
@@ -28,6 +39,21 @@ const render = (): void => {
     el(
       'main',
       { className: 'app' },
+      el(
+        'div',
+        { className: 'topbar' },
+        el(
+          'button',
+          {
+            className: 'theme-toggle',
+            type: 'button',
+            title: theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode',
+            'aria-label': theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode',
+            onClick: switchTheme,
+          },
+          theme === 'dark' ? createSunIcon() : createMoonIcon(),
+        ),
+      ),
       el(
         'header',
         { className: 'hero' },
