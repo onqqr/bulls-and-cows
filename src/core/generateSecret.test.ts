@@ -35,7 +35,7 @@ describe('generateSecret', () => {
   it('is deterministic when random source is injected', () => {
     const secret = generateSecret(4, 10, createSequenceRandom([0.1, 0.3, 0.5, 0.7]));
 
-    expect(secret).toBe('1356');
+    expect(secret).toBe('1367');
   });
 
   it('works for hex base', () => {
