@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Bulls and Cows number-guessing game",
   "scripts": {
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build": "tsc -p tsconfig.build.json",
+    "build:watch": "tsc -p tsconfig.build.json --watch"
   },
   "repository": {
     "type": "git",
@@ -17,7 +19,7 @@
     "url": "https://github.com/onqqr/bulls-and-cows/issues"
   },
   "homepage": "https://github.com/onqqr/bulls-and-cows#readme",
-  "private": "true",
+  "private": true,
   "devDependencies": {
     "typescript": "^7.0.2"
   }
