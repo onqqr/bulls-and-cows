@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { isValidGuess } from './isValidGuess';
+import { isValidGuess } from './isValidGuess.js';
 
 describe('isValidGuess', () => {
   it('accepts a guess with correct length, unique digits and valid alphabet', () => {

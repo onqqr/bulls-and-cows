@@ -1,9 +1,9 @@
-import { createDigitValidator } from '../core/createDigitValidator';
-import { createGame, getElapsedMs, submitGuess } from '../core/gameState';
-import { generateSecret } from '../core/generateSecret';
-import { addScore, saveScores, type ScoreStorage } from '../core/records';
-import { type BaseId, baseById } from './constants';
-import { type AppModel, syncLengthToBase } from './model';
+import { createDigitValidator } from '../core/createDigitValidator.js';
+import { createGame, getElapsedMs, submitGuess } from '../core/gameState.js';
+import { generateSecret } from '../core/generateSecret.js';
+import { addScore, saveScores, type ScoreStorage } from '../core/records.js';
+import { type BaseId, baseById } from './constants.js';
+import { type AppModel, syncLengthToBase } from './model.js';
 
 export const withBaseId = (model: AppModel, baseId: BaseId): AppModel => ({
   ...model,

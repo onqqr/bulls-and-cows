@@ -1,7 +1,7 @@
-import { getAvailableLengths } from '../core/getAvailableLengths';
-import { type GameState } from '../core/gameState';
-import { loadScores, type ScoreRecord, type ScoreStorage } from '../core/records';
-import { type BaseId, baseById } from './constants';
+import { getAvailableLengths } from '../core/getAvailableLengths.js';
+import { type GameState } from '../core/gameState.js';
+import { loadScores, type ScoreRecord, type ScoreStorage } from '../core/records.js';
+import { type BaseId, baseById } from './constants.js';
 
 export type AppModel = {
   baseId: BaseId;

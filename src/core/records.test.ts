@@ -9,7 +9,7 @@ import {
   saveScores,
   type ScoreRecord,
   type ScoreStorage,
-} from './records';
+} from './records.js';
 
 const score = (
   partial: Partial<ScoreRecord> & Pick<ScoreRecord, 'attempts' | 'timeMs'>,

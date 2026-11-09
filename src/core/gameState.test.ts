@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { createGame, getElapsedMs, submitGuess } from './gameState';
+import { createGame, getElapsedMs, submitGuess } from './gameState.js';
 
 const settings = { length: 4, base: 10 };
 

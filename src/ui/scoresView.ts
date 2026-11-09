@@ -1,7 +1,7 @@
-import { type ScoreRecord } from '../core/records';
-import { idByBase } from '../app/constants';
-import { formatDuration } from '../app/format';
-import { el } from './dom';
+import { type ScoreRecord } from '../core/records.js';
+import { idByBase } from '../app/constants.js';
+import { formatDuration } from '../app/format.js';
+import { el } from './dom.js';
 
 export const renderScoresView = (scores: readonly ScoreRecord[]): HTMLElement =>
   el(

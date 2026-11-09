@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { getAvailableLengths } from './getAvailableLengths';
+import { getAvailableLengths } from './getAvailableLengths.js';
 
 describe('getAvailableLengths', () => {
   it('returns lengths from 2 to 6 that do not exceed the base', () => {

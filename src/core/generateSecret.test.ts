@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { generateSecret } from './generateSecret';
-import { isValidGuess } from './isValidGuess';
+import { generateSecret } from './generateSecret.js';
+import { isValidGuess } from './isValidGuess.js';
 
 const createSequenceRandom = (values: number[]) => {
   let index = 0;

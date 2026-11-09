@@ -1,8 +1,8 @@
-import { countPossibleSecrets } from '../core/countPossibleSecrets';
-import { getAvailableLengths } from '../core/getAvailableLengths';
-import { BASE_OPTIONS, type BaseId, baseById } from '../app/constants';
-import { type AppModel } from '../app/model';
-import { el } from './dom';
+import { countPossibleSecrets } from '../core/countPossibleSecrets.js';
+import { getAvailableLengths } from '../core/getAvailableLengths.js';
+import { BASE_OPTIONS, type BaseId, baseById } from '../app/constants.js';
+import { type AppModel } from '../app/model.js';
+import { el } from './dom.js';
 
 type SettingsHandlers = {
   onBaseChange: (baseId: BaseId) => void;

@@ -1,6 +1,6 @@
-import { getElapsedMs, type GameState } from '../core/gameState';
-import { formatDuration } from '../app/format';
-import { el } from './dom';
+import { getElapsedMs, type GameState } from '../core/gameState.js';
+import { formatDuration } from '../app/format.js';
+import { el } from './dom.js';
 
 type GameHandlers = {
   onDraftInput: (value: string) => void;
