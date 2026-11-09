@@ -1,3 +1,6 @@
+import { evaluateGuess } from './evaluateGuess';
+import { isValidGuess } from './isValidGuess';
+
 export type GameSettings = {
   length: number;
   base: number;
@@ -18,14 +21,40 @@ export type GameState = {
   finishedAt: number | null;
 };
 
-export const createGame = (_settings: GameSettings, _secret: string, _now: number): GameState => {
-  throw new Error('Not implemented');
+export const createGame = (settings: GameSettings, secret: string, now: number): GameState => ({
+  settings,
+  secret,
+  status: 'playing',
+  history: [],
+  startedAt: now,
+  finishedAt: null,
+});
+
+const hasGuess = (history: readonly Attempt[], guess: string): boolean =>
+  history.some((attempt) => attempt.guess === guess);
+
+export const submitGuess = (state: GameState, guess: string, now: number): GameState => {
+  if (state.status !== 'playing') {
+    return state;
+  }
+
+  const normalizedGuess = guess.toLowerCase();
+  const { length, base } = state.settings;
+
+  if (!isValidGuess(normalizedGuess, length, base) || hasGuess(state.history, normalizedGuess)) {
+    return state;
+  }
+
+  const result = evaluateGuess(state.secret, normalizedGuess);
+  const won = result.bulls === length;
+
+  return {
+    ...state,
+    status: won ? 'won' : 'playing',
+    history: [...state.history, { guess: normalizedGuess, ...result }],
+    finishedAt: won ? now : null,
+  };
 };
 
-export const submitGuess = (_state: GameState, _guess: string, _now: number): GameState => {
-  throw new Error('Not implemented');
-};
-
-export const getElapsedMs = (_state: GameState, _now: number): number => {
-  throw new Error('Not implemented');
-};
+export const getElapsedMs = (state: GameState, now: number): number =>
+  (state.finishedAt ?? now) - state.startedAt;
