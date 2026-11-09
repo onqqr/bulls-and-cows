@@ -1,0 +1,24 @@
+{
+  "name": "bulls-and-cows",
+  "version": "1.0.0",
+  "description": "Bulls and Cows number-guessing game",
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onqqr/bulls-and-cows.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/onqqr/bulls-and-cows/issues"
+  },
+  "homepage": "https://github.com/onqqr/bulls-and-cows#readme",
+  "private": "true",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  }
+}
