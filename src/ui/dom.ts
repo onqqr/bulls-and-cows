@@ -64,7 +64,11 @@ export const el = <K extends keyof HTMLElementTagNameMap>(
   });
 
   if (deferredValue !== undefined && deferredValue !== null) {
-    if (node instanceof HTMLInputElement || node instanceof HTMLSelectElement) {
+    if (
+      node instanceof HTMLInputElement ||
+      node instanceof HTMLSelectElement ||
+      node instanceof HTMLOptionElement
+    ) {
       node.value = String(deferredValue);
     }
   }
