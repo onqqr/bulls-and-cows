@@ -1,0 +1,416 @@
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #12110e;
+  --bg-deep: #050507;
+  --panel: #1b1a16;
+  --ink: #ece8dd;
+  --text: #cbc6b8;
+  --muted: #949085;
+  --line: #2e2c27;
+  --line-strong: #3f3c35;
+  --accent: #5eb0ff;
+  --accent-soft: rgba(94, 176, 255, 0.14);
+  --accent-ink: #050507;
+  --control: #14130f;
+  --shadow: 0 0 0 1px var(--line);
+  --font-display: 'VT323', monospace;
+  --font-ui: 'Fira Sans', system-ui, sans-serif;
+  --font-body: 'Literata', Georgia, serif;
+  --font-mono: 'Fira Code', ui-monospace, monospace;
+  --font-accent: 'Archivo', 'Fira Sans', sans-serif;
+  --radius: 0;
+  --pixel: 2px;
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f4f1e7;
+  --bg-deep: #ece8dd;
+  --panel: #ece8dd;
+  --ink: #1c1b22;
+  --text: #1c1b22;
+  --muted: #5f5b52;
+  --line: #cfc8b8;
+  --line-strong: #b8b09d;
+  --accent: #1f7fd4;
+  --accent-soft: rgba(31, 127, 212, 0.12);
+  --accent-ink: #f4f1e7;
+  --control: #f7f4ec;
+  --shadow: 0 0 0 1px var(--line);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--bg-deep);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-ui);
+  color: var(--ink);
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(94, 176, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(94, 176, 255, 0.03) 1px, transparent 1px);
+  background-size: 16px 16px;
+  image-rendering: pixelated;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button,
+.field select,
+.field input,
+.history li,
+.scores li,
+.theme-toggle {
+  transition:
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease,
+    box-shadow 120ms ease,
+    transform 120ms ease;
+}
+
+.app {
+  width: min(920px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 4rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.topbar {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: var(--pixel) solid var(--line-strong);
+  background: var(--control);
+  color: var(--accent);
+  box-shadow: 2px 2px 0 var(--bg-deep);
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 3px 3px 0 var(--bg-deep);
+  transform: translate(-1px, -1px);
+}
+
+.theme-toggle:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--bg-deep);
+}
+
+.theme-icon {
+  display: block;
+  flex-shrink: 0;
+}
+
+.hero {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1rem;
+  border: var(--pixel) solid var(--line-strong);
+  background: var(--panel);
+  box-shadow: 4px 4px 0 var(--bg-deep);
+}
+
+.hero h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 9vw, 4.6rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  text-shadow: 2px 2px 0 var(--bg-deep);
+}
+
+.hero p {
+  margin: 0;
+  max-width: 40rem;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--text);
+}
+
+.panel {
+  background: var(--panel);
+  border: var(--pixel) solid var(--line-strong);
+  box-shadow: 4px 4px 0 var(--bg-deep);
+  padding: 1.1rem;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.panel h2 {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: end;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 9rem;
+}
+
+.field span {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.field input,
+.actions button,
+.guess-form button {
+  border: var(--pixel) solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 0.7rem 0.9rem;
+  background: var(--control);
+  color: var(--ink);
+  box-shadow: 2px 2px 0 var(--bg-deep);
+}
+
+.field select {
+  appearance: none;
+  -webkit-appearance: none;
+  min-width: 11rem;
+  border: var(--pixel) solid var(--line-strong);
+  border-radius: var(--radius);
+  padding: 0.7rem 2.75rem 0.7rem 0.9rem;
+  color: var(--ink);
+  box-shadow: 2px 2px 0 var(--bg-deep);
+  background-color: var(--control);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%235eb0ff' d='M1 1h10L6 7z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 11px 8px;
+  cursor: pointer;
+}
+
+[data-theme='light'] .field select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%231f7fd4' d='M1 1h10L6 7z'/%3E%3C/svg%3E");
+}
+
+.field select:hover:not(:disabled),
+.field input:hover:not(:disabled) {
+  border-color: var(--accent);
+  background-color: var(--accent-soft);
+}
+
+.field select:focus-visible,
+.field input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow:
+    2px 2px 0 var(--bg-deep),
+    0 0 0 2px var(--accent-soft);
+}
+
+.actions button,
+.guess-form button {
+  font-family: var(--font-accent);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+
+.actions button:hover:not(:disabled),
+.guess-form button:hover:not(:disabled) {
+  filter: brightness(1.08);
+  box-shadow: 3px 3px 0 var(--bg-deep);
+  transform: translate(-1px, -1px);
+}
+
+.actions button:active:not(:disabled),
+.guess-form button:active:not(:disabled) {
+  filter: brightness(0.95);
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--bg-deep);
+}
+
+.actions button.secondary,
+.guess-form button.secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line-strong);
+  font-weight: 500;
+  filter: none;
+}
+
+.actions button.secondary:hover:not(:disabled),
+.guess-form button.secondary:hover:not(:disabled) {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent);
+  filter: none;
+}
+
+.actions button:disabled,
+.field select:disabled,
+.field input:disabled,
+.guess-form button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+  filter: none;
+}
+
+.meta {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  letter-spacing: 0.03em;
+}
+
+.guess-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.guess-form input {
+  flex: 1 1 12rem;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.history,
+.scores {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.history li,
+.scores li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.7rem 0.8rem;
+  border: var(--pixel) solid var(--line);
+  background: var(--control);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+}
+
+.history li:hover,
+.scores li:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: 2px 2px 0 var(--bg-deep);
+  transform: translate(-1px, -1px);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  padding: 0.15rem 0.45rem;
+  border: var(--pixel) solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.status {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 0.98rem;
+  color: var(--text);
+}
+
+.status.won {
+  color: var(--accent);
+  font-family: var(--font-accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.empty {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+}
+
+@media (max-width: 640px) {
+  .history li,
+  .scores li {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button,
+  .field select,
+  .field input,
+  .history li,
+  .scores li,
+  .theme-toggle {
+    transition: none;
+  }
+
+  .theme-toggle:hover,
+  .theme-toggle:active,
+  .actions button:hover:not(:disabled),
+  .guess-form button:hover:not(:disabled),
+  .actions button:active:not(:disabled),
+  .guess-form button:active:not(:disabled),
+  .history li:hover,
+  .scores li:hover {
+    transform: none;
+  }
+}
